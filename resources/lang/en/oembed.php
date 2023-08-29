@@ -10,5 +10,6 @@ return [
     'title' => 'Title',
     'byline' => 'Byline',
     'portrait' => 'Portrait',
+    'mute' => 'Mute',
     'preview' => 'Preview',
 ];

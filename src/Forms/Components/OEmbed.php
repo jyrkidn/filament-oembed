@@ -35,7 +35,6 @@ class OEmbed
                                 $set($field.'.embed_type', $embed_type);
                             }
                         })
-                        ->required()
                         ->columnSpan('full'),
                     Forms\Components\Checkbox::make($field.'.responsive')
                         ->default(true)
@@ -59,7 +58,6 @@ class OEmbed
                     Forms\Components\Group::make([
                         Forms\Components\TextInput::make($field.'.width')
                             ->reactive()
-                            ->required()
                             ->label(fn (): string => __('filament-oembed::oembed.width'))
                             ->default('16')
                             ->afterStateHydrated(function (Forms\Components\Component $component, $state) {
@@ -69,7 +67,6 @@ class OEmbed
                             }),
                         Forms\Components\TextInput::make($field.'.height')
                             ->reactive()
-                            ->required()
                             ->label(fn (): string => __('filament-oembed::oembed.height'))
                             ->default('9')
                             ->afterStateHydrated(function (Forms\Components\Component $component, $state) {
@@ -104,6 +101,10 @@ class OEmbed
                                 Forms\Components\Checkbox::make($field.'.portrait')
                                     ->default(false)
                                     ->label(fn (): string => __('filament-oembed::oembed.portrait'))
+                                    ->reactive(),
+                                Forms\Components\Checkbox::make($field.'.mute')
+                                    ->default(false)
+                                    ->label(fn (): string => __('filament-oembed::oembed.mute'))
                                     ->reactive(),
                             ]),
                         ]),

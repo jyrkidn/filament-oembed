@@ -23,16 +23,19 @@ class OEmbed
                         ->lazy()
                         ->afterStateUpdated(function (Forms\Set $set, Forms\Get $get, $state) use ($field) {
                             if ($state) {
-                                $embed_type = Str::of($state)->contains('vimeo') ? 'vimeo' : 'youtube';
+                                $embedType = Str::of($state)->contains('vimeo') ? 'vimeo' : 'youtube';
 
-                                if ($embed_type == 'vimeo') {
-                                    $embed_url = static::getVimeoUrl($state);
+                                if ($embedType === 'vimeo') {
+                                    $embedUrl = static::getVimeoUrl($state);
                                 } else {
-                                    $embed_url = static::getYoutubeUrl($state);
+                                    $embedUrl = static::getYoutubeUrl($state);
                                 }
 
-                                $set($field.'.embed_url', $embed_url);
-                                $set($field.'.embed_type', $embed_type);
+                                $set($field.'.embed_url', $embedUrl);
+                                $set($field.'.embed_type', $embedType);
+                            } else {
+                                $set($field.'.embed_url', null);
+                                $set($field.'.embed_type', null);
                             }
                         })
                         ->columnSpan('full'),
